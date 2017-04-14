@@ -10,7 +10,7 @@ from app import app, login_manager
 from .forms import LoginForm
 from .models import User, Party
 
-
+@login_required
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -26,8 +26,6 @@ def validateAndAdd(party_name):
     db.session.commit()
 
 
-
-@app.route('/', methods=['GET'])
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
@@ -46,6 +44,7 @@ def validateUser(first_name,last_name,user_id):
         return True
     return False
 
+@app.route('/', methods=['GET','POST'])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None

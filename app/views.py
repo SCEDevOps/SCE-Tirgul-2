@@ -5,8 +5,8 @@ import os
 from flask import render_template, flash, redirect, url_for, request, g
 from flask import send_from_directory
 from flask_login import login_user, logout_user, current_user, login_required
-
-from app import app, login_manager, db
+from app import db
+from app import app, login_manager
 from .forms import LoginForm
 from .models import User, Party
 
@@ -17,8 +17,14 @@ def load_user(user_id):
 
 
 def validateAndAdd(party_name):
-    ## implement me!
-    pass
+    party = Party.query.filter_by(name=party_name).first()
+    if (party.voting_amount is None):
+        party.voting_amount = 1
+    else:
+        party.voting_amount += 1
+
+    db.session.commit()
+
 
 
 @app.route('/', methods=['GET'])
@@ -34,10 +40,9 @@ def index():
                            title='Home',
                            user=g.user,
                            parties=parties)
-
 def validateUser(first_name,last_name,user_id):
     user = User.query.filter_by(first_name=first_name,last_name=last_name,user_id=user_id).first()
-    if (user is not None):
+    if (user is not None and user.can_vote is True):
         return True
     return False
 
@@ -50,14 +55,15 @@ def login():
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         user_id = request.form['user_id']
-        if validateUser(first_name, last_name, user_id):
+        if validateUser(first_name,last_name,user_id):
             user = User.query.filter_by(user_id=user_id).first()
             login_user(user)  ## built in 'flask login' method that creates a user session
+            user.can_vote=False
             db.session.commit()
             return redirect(url_for('index'))
 
         else: ##validation error
-            error = u'המצביע אינו מופיע בבסיס הנתונים'
+            error = u'המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע '
 
     return render_template('login.html',
                            error=error)

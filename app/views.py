@@ -6,7 +6,7 @@ from flask import render_template, flash, redirect, url_for, request, g
 from flask import send_from_directory
 from flask_login import login_user, logout_user, current_user, login_required
 
-from app import app, login_manager
+from app import app, login_manager, db
 from .forms import LoginForm
 from .models import User, Party
 
@@ -35,6 +35,11 @@ def index():
                            user=g.user,
                            parties=parties)
 
+def validateUser(first_name,last_name,user_id):
+    user = User.query.filter_by(first_name=first_name,last_name=last_name,user_id=user_id).first()
+    if (user is not None):
+        return True
+    return False
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -43,9 +48,12 @@ def login():
 
         ## Validate user
         first_name = request.form['first_name']
-        if first_name == "tomer":
-            user = User.query.filter_by(first_name=first_name).first()
+        last_name = request.form['last_name']
+        user_id = request.form['user_id']
+        if validateUser(first_name, last_name, user_id):
+            user = User.query.filter_by(user_id=user_id).first()
             login_user(user)  ## built in 'flask login' method that creates a user session
+            db.session.commit()
             return redirect(url_for('index'))
 
         else: ##validation error

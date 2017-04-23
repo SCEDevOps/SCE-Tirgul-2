@@ -1,5 +1,6 @@
 from app.views import login, validateUser
 import unittest
+import nose
 
 
 class name(unittest.TestCase):

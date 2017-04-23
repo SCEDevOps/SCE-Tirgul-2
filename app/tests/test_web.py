@@ -9,7 +9,7 @@ class name(unittest.TestCase):
     def test(self):
         invalid_login = self.app.post('login', data=dict(login='invalid', password='invalid'), follow_redirects=True)
         assert 'Invalid credentials' in invalid_login.data
-        #test
+        #testt
 
 
 if __name__ == '__main__':

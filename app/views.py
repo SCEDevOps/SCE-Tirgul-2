@@ -45,6 +45,7 @@ def validateUser(first_name,last_name,user_id):
     return False
 
 @app.route('/', methods=['GET','POST'])
+@login_required
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None

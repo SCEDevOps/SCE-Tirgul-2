@@ -1,6 +1,7 @@
 from app.views import login, validateUser
 import unittest
 import nose
+import flask
 
 
 class name(unittest.TestCase):

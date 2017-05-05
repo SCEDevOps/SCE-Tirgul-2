@@ -31,6 +31,16 @@ class name(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         #TEST ADDED
 
+    # def test_loginn(self):
+    #     with app.app_context():
+    #         res= self.app.login('/login', data=dict(
+    #             first_name="rom",
+    #             last_name="siksik",
+    #             user_id="33"
+    #             ), follow_redirects=True)
+    #     assert b'You were logged in' in res.data
+
+
     # def test_invaild_login(self):
     #     self.app = app.test_client()
     #     invalid_login = app.post('login', data=dict(login='invalid', password='invalid'), follow_redirects=True)

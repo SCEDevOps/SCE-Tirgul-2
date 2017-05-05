@@ -1,8 +1,5 @@
-import os
 import unittest
-from app import app, db
-from app.models import User, Party
-from flask_config import basedir
+from app import app
 
 class AppTestCase(unittest.TestCase):
 
@@ -29,8 +26,6 @@ class AppTestCase(unittest.TestCase):
         str = response.data.decode('utf-8')
         assert 'המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע' in str
 ###################################################################
-
-
 
 if __name__ == '__main__':
     unittest.main()

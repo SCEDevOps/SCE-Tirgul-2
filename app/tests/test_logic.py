@@ -1,11 +1,9 @@
-from threading import Thread
+from tkinter import Image
 
-import selenium
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 ################# Get In with correct details #################
-from selenium.webdriver.support.wait import WebDriverWait
 
 chromedriver = "../tests/chromedriver"
 browser = webdriver.Chrome(chromedriver)
@@ -17,9 +15,9 @@ last_name_Input.send_keys("siksik")
 id_Input =  browser.find_element_by_id("user_id")
 id_Input.send_keys("66")
 id_Input.send_keys(Keys.ENTER)
+browser.save_screenshot('correctDatails.png')
 browser.close()
 #################################################################
-
 
 ################# Try to Get In with incorrect details ##########
 
@@ -32,7 +30,7 @@ last_name_Input.send_keys("horesh")
 id_Input =  browser.find_element_by_id("user_id")
 id_Input.send_keys("66")
 id_Input.send_keys(Keys.ENTER)
-WebDriverWait(browser, 3)
+browser.save_screenshot('incorrectDatails.png')
 browser.close()
 #################################################################
 

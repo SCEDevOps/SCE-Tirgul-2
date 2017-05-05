@@ -16,7 +16,7 @@ class name(unittest.TestCase):
 
     #####################################################################################
     def No_Id_Test(self):
-        res = requests.post('http://localhost')
+        res = requests.post('http://127.0.0.1:5000/')
         self.assertEqual(res.status_code, 200)
     #####################################################################################
 

@@ -17,7 +17,7 @@ class name(unittest.TestCase):
     #####################################################################################
     def Manager_Authentication_Test(self):
         res = requests.post('http:localhost:5000/app/manager')
-        self.assertEqual(res.status_code, 200)
+        self.assertFalse(res.status_code)
         #try
     #####################################################################################
 

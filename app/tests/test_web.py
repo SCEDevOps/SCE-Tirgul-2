@@ -1,51 +1,23 @@
-# import unittest
-#
-# from flask import app, Flask
-# from flask_login import LoginManager
-# from flask_sqlalchemy import SQLAlchemy
-#
-# from app.views import validateUser
-#
-#
-# # def test_p(self):
-# #     self.assertFalse(validateUser("rom","siksik","22"))
-#         #testttgsdf
-#
-#
-# # class name(unittest.TestCase):
-# #     def create_app(self):
-# #         app = Flask(__name__)
-# #         app.config.from_object('flask_config')
-# #         db = SQLAlchemy(app)
-# #         login_manager = LoginManager()
-# #         login_manager.init_app(app)
-# #         login_manager.login_view = 'login'
-#
-#
-# if __name__ == '__main__':
-#     unittest.main()
-# #     #####################################################################################
-# #     # #
-# #
-# #
-# #      # def test_d(self):
-# #      #    self.app =app.test_client()
-# #      #    response = self.app.get('/', follow_redirects=True)
-# #      #    self.assertEqual(response.status_code, 200)
-# #      #    #TEST ADDED
-# #
-# #     # def test_loginn(self):
-# #     #     with app.app_context():
-# #     #         res= self.app.login('/login', data=dict(
-# #     #             first_name="rom",
-# #     #             last_name="siksik",
-# #     #             user_id="33"
-# #     #             ), follow_redirects=True)
-# #     #     assert b'You were logged in' in res.data
-# #
-# #
-# #     # def test_invaild_login(self):
-# #     #     self.app = app.test_client()
-# #     #     invalid_login = app.post('login', data=dict(login='invalid', password='invalid'), follow_redirects=True)
-# #     #     assert 'Invalid credentials' in invalid_login.data
-# #
+import os
+import unittest
+from app import app, db
+from app.models import User, Party
+from flask_config import basedir
+
+class AppTestCase(unittest.TestCase):
+
+    basedir = os.path.abspath(os.path.dirname(__file__))
+
+    def setUp(self):
+        self.app = app
+        self.tester = self.app.test_client(self)
+        self.tester.testing = True
+
+######## The manager page is not Unaccessible from the url ########
+    def test_Manager_Option(self):
+        response = self.tester.get('/app/manager')
+        self.assertEqual(response.status_code, 404) #404=not founf
+###################################################################
+
+if __name__ == '__main__':
+    unittest.main()

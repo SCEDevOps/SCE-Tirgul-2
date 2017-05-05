@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 ################# Get In with correct details #################
 from selenium.webdriver.support.wait import WebDriverWait
 
-chromedriver = "/Users/LITALHO/PycharmProjects/SCE-Tirgul-2/chromedriver"
+chromedriver = "C:/Users/LITALHO/PycharmProjects/SCE-Tirgul-2/app/tests/chromedriver"
 browser = webdriver.Chrome(chromedriver)
 browser.get('http://127.0.0.1:5000/')
 first_name_Input = browser.find_element_by_id("first_name")
@@ -23,7 +23,6 @@ browser.close()
 
 ################# Try to Get In with incorrect details ##########
 
-chromedriver = "/Users/LITALHO/PycharmProjects/SCE-Tirgul-2/chromedriver"
 browser = webdriver.Chrome(chromedriver)
 browser.get('http://127.0.0.1:5000/')
 first_name_Input = browser.find_element_by_id("first_name")

@@ -39,5 +39,3 @@ class name(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-def trying():
-    trying=1

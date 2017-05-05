@@ -23,5 +23,14 @@ class AppTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 400) # 400=Bad Request
 ###################################################################
 
+#################### not in db - err message ######################
+    def test_error_message(self):
+        response = self.check.post('login',data=dict(first_name='dummy', last_name='dummy',user_id ='1'))
+        str = response.data.decode('utf-8')
+        assert 'המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע' in str
+###################################################################
+
+
+
 if __name__ == '__main__':
     unittest.main()

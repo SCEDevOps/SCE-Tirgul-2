@@ -6,8 +6,6 @@ from flask_config import basedir
 
 class AppTestCase(unittest.TestCase):
 
-    basedir = os.path.abspath(os.path.dirname(__file__))
-
     def setUp(self):
         self.app = app
         self.tester = self.app.test_client(self)

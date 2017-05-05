@@ -2,6 +2,7 @@ from app.views import login, validateUser
 import unittest
 import nose
 import flask
+import requests
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -12,6 +13,12 @@ from app import views, models, app
 
 
 class name(unittest.TestCase):
+
+    #####################################################################################
+    def No_Id_Test(self):
+        res = requests.post('http://localhost')
+        self.assertEqual(res.status_code, 200)
+    #####################################################################################
 
     def create_app(self):
         app = Flask(__name__)

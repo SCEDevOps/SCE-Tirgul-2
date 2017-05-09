@@ -16,7 +16,7 @@ id_Input.send_keys(Keys.ENTER)
 browser.save_screenshot('correctDatails.png')
 browser.close()
 #################################################################
-#rom && lital#
+
 ################# Try to Get In with incorrect details ##########
 
 browser = webdriver.Chrome(chromedriver)

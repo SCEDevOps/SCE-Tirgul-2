@@ -3,13 +3,22 @@ from selenium.webdriver.common.keys import Keys
 import unittest
 import time
 
+from app import db
+from app.models import User
+
 class SeleniumTest(unittest.TestCase):
 
     def setUp(self):
         self.browser = webdriver.Firefox()
         self.time = time
+        db.create_all()
+        db.session.commit()
+        lilo = User('lilo', 'siksik', 66)
+        db.session.add(lilo)
+        db.session.commit()
+
+
     def test_correct_details(self):
-        #../tests/chromedriver
         ################# Get In with correct details #################
         browser =  self.browser
         browser.get('http://127.0.0.1:5000/')
@@ -42,6 +51,7 @@ class SeleniumTest(unittest.TestCase):
 
     def tearDown(self):
         self.browser.close()
+        db.drop_all()
 
 if __name__ == '__main__':
     unittest.main()

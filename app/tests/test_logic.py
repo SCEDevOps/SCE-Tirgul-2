@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
 ################# Get In with correct details #################
-
 chromedriver = "../tests/chromedriver"
 browser = webdriver.Chrome(chromedriver)
 browser.get('http://127.0.0.1:5000/')

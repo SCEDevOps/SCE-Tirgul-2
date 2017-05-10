@@ -7,7 +7,7 @@ from app import db
 from app.models import User
 
 class SeleniumTest(unittest.TestCase):
-
+##
     def setUp(self):
         self.browser = webdriver.Firefox()
         self.time = time

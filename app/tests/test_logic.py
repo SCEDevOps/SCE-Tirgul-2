@@ -1,13 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
-from app import app
+import time
 
 class SeleniumTest(unittest.TestCase):
 
     def setUp(self):
-        self.browser = webdriver.Chrome()
-
+        self.browser = webdriver.Firefox()
+        self.time = time
     def test_correct_details(self):
         #../tests/chromedriver
         ################# Get In with correct details #################
@@ -20,6 +20,7 @@ class SeleniumTest(unittest.TestCase):
         id_Input = browser.find_element_by_id("user_id")
         id_Input.send_keys("66")
         id_Input.send_keys(Keys.ENTER)
+        self.time.sleep(3)
         assert 'המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע' not in self.browser.page_source
         #browser.save_screenshot('correctDatails.png')
 
@@ -34,6 +35,7 @@ class SeleniumTest(unittest.TestCase):
         id_Input = browser.find_element_by_id("user_id")
         id_Input.send_keys("66")
         id_Input.send_keys(Keys.ENTER)
+        self.time.sleep(3)
         assert 'המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע' in self.browser.page_source
         #browser.save_screenshot('incorrectDatails.png')
         #################################################################

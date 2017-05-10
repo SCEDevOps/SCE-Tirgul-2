@@ -11,6 +11,8 @@ class SeleniumTest(unittest.TestCase):
     def setUp(self):
         self.browser = webdriver.Firefox()
         self.time = time
+        self.str ='המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע'
+        db.drop_all()
         db.create_all()
         db.session.commit()
         lilo = User('lilo', 'siksik', 66)
@@ -29,8 +31,8 @@ class SeleniumTest(unittest.TestCase):
         id_Input = browser.find_element_by_id("user_id")
         id_Input.send_keys("66")
         id_Input.send_keys(Keys.ENTER)
-        self.time.sleep(3)
-        assert 'המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע' not in self.browser.page_source
+        self.time.sleep(2)
+        assert self.str not in self.browser.page_source
         #browser.save_screenshot('correctDatails.png')
 
     def test_incorrect_details(self):
@@ -42,10 +44,10 @@ class SeleniumTest(unittest.TestCase):
         last_name_Input = browser.find_element_by_id("last_name")
         last_name_Input.send_keys("horesh")
         id_Input = browser.find_element_by_id("user_id")
-        id_Input.send_keys("66")
+        id_Input.send_keys("222")
         id_Input.send_keys(Keys.ENTER)
-        self.time.sleep(3)
-        assert 'המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע' in self.browser.page_source
+        self.time.sleep(2)
+        assert self.str in self.browser.page_source
         #browser.save_screenshot('incorrectDatails.png')
         #################################################################
 

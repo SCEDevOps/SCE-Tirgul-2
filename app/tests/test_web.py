@@ -1,5 +1,6 @@
 import unittest
 from app import app
+from app import db
 
 class WebTest(unittest.TestCase):
 
@@ -7,6 +8,8 @@ class WebTest(unittest.TestCase):
         self.app = app
         self.check = self.app.test_client(self)
         self.check.testing = True
+        db.drop_all()
+        db.create_all()
 
 ######## The manager page is not Unaccessible from the url ########
     def test_Manager_Option(self):
@@ -26,6 +29,9 @@ class WebTest(unittest.TestCase):
         str = response.data.decode('utf-8')
         assert 'המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע' in str
 ###################################################################
+    def tearDown(self):
+        db.drop_all()
+
 
 if __name__ == '__main__':
     unittest.main()

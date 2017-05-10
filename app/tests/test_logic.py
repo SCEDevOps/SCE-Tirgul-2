@@ -3,12 +3,12 @@ from selenium.webdriver.common.keys import Keys
 import unittest
 from app import app
 
-class AppTestCae(unittest.TestCase):
+class SeleniumTest(unittest.TestCase):
 
     def setUp(self):
         self.browser = webdriver.Chrome()
 
-    def test_Manager_Option(self):
+    def test_correct_details(self):
         #../tests/chromedriver
         ################# Get In with correct details #################
         browser =  self.browser
@@ -23,7 +23,7 @@ class AppTestCae(unittest.TestCase):
         assert 'המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע' not in self.browser.page_source
         #browser.save_screenshot('correctDatails.png')
 
-    def test_missing_id_(self):
+    def test_incorrect_details(self):
         ################# Try to Get In with incorrect details ##########
         browser =  self.browser
         browser.get('http://127.0.0.1:5000/')

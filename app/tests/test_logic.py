@@ -1,15 +1,16 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
+import os
 import time
 
 from app import db
 from app.models import User
 
 class SeleniumTest(unittest.TestCase):
-##
+##C:\Users\rom\Desktop\Tirgul2\app\tests\phantomjs.exe
     def setUp(self):
-        self.browser = webdriver.Firefox()
+        self.browser = webdriver.PhantomJS()
         self.time = time
         self.str ='המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע'
         db.drop_all()

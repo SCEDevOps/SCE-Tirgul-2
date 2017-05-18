@@ -79,7 +79,7 @@ class SeleniumTest(unittest.TestCase):
         print(self.driver.current_url)
         print('------------------------')
         assert "Flask Intro - login page" == self.browser.title
-        ######
+        #
 
     def tearDown(self):
         self.browser.close()

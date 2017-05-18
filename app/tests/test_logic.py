@@ -68,9 +68,10 @@ class SeleniumTest(unittest.TestCase):
         #################################################################
 
     def test_home(self):
-        self.browser.get("http://127.0.0.1:5000/")
+        res =self.browser.get("http://127.0.0.1:5000/")
         print(self.browser.title)
-        assert "Flask Intro - login page" == self.browser.title
+        self.assertEqual(res.code, 200)
+        #assert "Flask Intro - login page" == self.browser.title
 
     def tearDown(self):
         self.browser.close()

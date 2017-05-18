@@ -9,8 +9,6 @@ class WebTest(unittest.TestCase):
 
     def create_app(self):
         app.config['TESTING'] = True
-        app.config['LIVESERVER_PORT'] = 8943
-        app.config['LIVESERVER_TIMEOUT'] = 10
         db.init_app(app)
         with app.app_context():
             db.create_all()
@@ -19,7 +17,6 @@ class WebTest(unittest.TestCase):
 
     def setUp(self):
         self.check = app.test_client(self)
-        self.check.testing = True
 
 ######## The manager page is not Unaccessible from the url ########
     def test_Manager_Option(self):

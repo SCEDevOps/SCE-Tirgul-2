@@ -54,7 +54,7 @@ class SeleniumTest(unittest.TestCase):
         #################################################################
 
     def tearDown(self):
-        self.browser.quit()
+        self.browser.close()
         db.drop_all()
 
 if __name__ == '__main__':

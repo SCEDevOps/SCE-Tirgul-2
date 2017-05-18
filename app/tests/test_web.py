@@ -8,6 +8,8 @@ class WebTest(unittest.TestCase):
     TESTING = True
 
     def setUp(self):
+        self.app_context = app.app_context()
+        self.app_context.push()
         db.create_all()
         self.check = app.test_client(self)
 
@@ -34,6 +36,7 @@ class WebTest(unittest.TestCase):
         del self.check
         db.session.remove()
         db.drop_all()
+        self.app_context.pop()
 
 
 if __name__ == '__main__':

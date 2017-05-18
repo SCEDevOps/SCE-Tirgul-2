@@ -80,7 +80,7 @@ class SeleniumTest(LiveServerTestCase):
         #################################################################
 
     def test_home(self):
-        assert "Flask Intro - login page" == self.driver.title
+        assert "Flask Intro - login page" == self.browser.title
         ###
 
     def tearDown(self):

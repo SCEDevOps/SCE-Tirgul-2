@@ -18,7 +18,7 @@ class WebTest(unittest.TestCase):
         return app
 
     def setUp(self):
-        self.check = self.test_client(self)
+        self.check = app.test_client(self)
         self.check.testing = True
 
 ######## The manager page is not Unaccessible from the url ########

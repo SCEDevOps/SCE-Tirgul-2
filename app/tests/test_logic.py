@@ -17,11 +17,12 @@ class SeleniumTest(unittest.TestCase):
         lilo = User('lilo', 'siksik', 66)
         db.session.add(lilo)
         db.session.commit()
+        self.browser.get(self.get_server_url())
 
     def test_correct_details(self):
         ################# Get In with correct details #################
         #browser =  self.browser
-        self.browser.get(self.get_server_url())
+        #browser.get('http://127.0.0.1:5000/')
         first_name_Input = self.browser.find_element_by_id("first_name")
         first_name_Input.send_keys("lilo")
         last_name_Input = self.browser.find_element_by_id("last_name")
@@ -36,13 +37,13 @@ class SeleniumTest(unittest.TestCase):
 
     def test_incorrect_details(self):
         ################# Try to Get In with incorrect details ##########
-        browser =  self.browser
-        browser.get(self.get_server_url())
-        first_name_Input = browser.find_element_by_id("first_name")
+        #browser =  self.browser
+        #browser.get('http://127.0.0.1:5000/')
+        first_name_Input = self.browser.find_element_by_id("first_name")
         first_name_Input.send_keys("lilo")
-        last_name_Input = browser.find_element_by_id("last_name")
+        last_name_Input = self.browser.find_element_by_id("last_name")
         last_name_Input.send_keys("horesh")
-        id_Input = browser.find_element_by_id("user_id")
+        id_Input = self.browser.find_element_by_id("user_id")
         id_Input.send_keys("222")
         id_Input.send_keys(Keys.ENTER)
         #self.time.sleep(20)

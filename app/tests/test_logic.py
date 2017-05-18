@@ -1,28 +1,42 @@
-from flask import Flask
+
+import os
+import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-import unittest
-import time
-from app import db
-from app.models import User
+from flask import Flask
+from flask_testing import LiveServerTestCase
+from app.models import User, Party
+from app import app , db
+
 
 class SeleniumTest(unittest.TestCase):
     SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
+
     def create_app(self):
-        app = Flask(__name__)
         app.config['TESTING'] = True
-        # Default port is 5000
         app.config['LIVESERVER_PORT'] = 8943
-        # Default timeout is 5 seconds
         app.config['LIVESERVER_TIMEOUT'] = 10
-        print('done creatin app ')
+        db.init_app(app)
+        with app.app_context():
+            db.create_all()
+            self.insert_data_to_db()
         return app
 
-    def setUp(self):
-        self.driver = webdriver.PhantomJS()
-        self.driver.get("http://localhost:8943")
+    def insert_data_to_db(self):
+        db.session.commit()
+        admon = User('tomer', 'admon', '123')
+        avoda = Party(u'׳”׳¢׳‘׳•׳“׳”',
+                      'https://www.am-1.org.il/wp-content/uploads/2015/03/%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%94.-%D7%A6%D7%99%D7%9C%D7%95%D7%9D-%D7%99%D7%97%D7%A6.jpg')
+        db.session.add(avoda)
+        db.session.add(admon)
+        db.session.commit()
 
+    def setUp(self):
+        # create a new Firefox session
+         self.browser = webdriver.PhantomJS()
+         # nevigate to the application home page
+         self.browser.get(self.get_server_url())
 
         # self.browser = webdriver.PhantomJS()
         # self.time = time

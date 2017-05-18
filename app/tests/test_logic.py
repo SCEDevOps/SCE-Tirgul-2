@@ -8,6 +8,8 @@ from app.models import User, Party
 from app import app , db
 
 
+
+
 class SeleniumTest(LiveServerTestCase):
     SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
@@ -19,8 +21,14 @@ class SeleniumTest(LiveServerTestCase):
         db.init_app(app)
         with app.app_context():
             db.create_all()
-            db.session.commit()
+            self.init_db()
         return app
+
+    def init_db(self):
+        db.session.commit()
+        u = User('lilo', 'siksik', '66')
+        db.session.add(u)
+        db.session.commit()
 
     def setUp(self):
         # create a new Firefox session

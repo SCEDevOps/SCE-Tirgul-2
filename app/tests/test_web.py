@@ -4,6 +4,19 @@ from app import db
 
 class WebTest(unittest.TestCase):
 
+    SQLALCHEMY_DATABASE_URI = "sqlite://"
+    TESTING = True
+
+    def create_app(self):
+        app.config['TESTING'] = True
+        app.config['LIVESERVER_PORT'] = 8943
+        app.config['LIVESERVER_TIMEOUT'] = 10
+        db.init_app(app)
+        with app.app_context():
+            db.create_all()
+            self.insert_data_to_db()
+        return app
+
     def setUp(self):
         self.app = app
         self.check = self.app.test_client(self)
@@ -30,7 +43,10 @@ class WebTest(unittest.TestCase):
         assert 'המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע' in str
 ###################################################################
     def tearDown(self):
-        db.drop_all()
+        self.browser.quit()
+        with app.app_context():
+            db.session.remove()
+            db.drop_all()
 
 
 if __name__ == '__main__':

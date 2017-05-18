@@ -24,11 +24,8 @@ class SeleniumTest(LiveServerTestCase):
 
     def insert_data_to_db(self):
         db.session.commit()
-        admon = User('lilo', 'siksik', '66')
-        avoda = Party(u'׳”׳¢׳‘׳•׳“׳”',
-                      'https://www.am-1.org.il/wp-content/uploads/2015/03/%D7%94%D7%A2%D7%91%D7%95%D7%93%D7%94.-%D7%A6%D7%99%D7%9C%D7%95%D7%9D-%D7%99%D7%97%D7%A6.jpg')
-        db.session.add(avoda)
-        db.session.add(admon)
+        u = User('lilo', 'siksik', '66')
+        db.session.add(u)
         db.session.commit()
 
     def setUp(self):

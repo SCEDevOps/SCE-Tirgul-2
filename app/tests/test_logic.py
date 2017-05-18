@@ -19,7 +19,7 @@ class SeleniumTest(LiveServerTestCase):
         db.init_app(app)
         with app.app_context():
             db.create_all()
-            db.commit()
+            db.session.commit()
         return app
 
     def setUp(self):
@@ -38,7 +38,6 @@ class SeleniumTest(LiveServerTestCase):
         id_Input = self.browser.find_element_by_id("user_id")
         id_Input.send_keys("66")
         id_Input.send_keys(Keys.ENTER)
-        print(self.browser.page_source)
         assert self.str not in self.browser.page_source
 
         #browser.save_screenshot('correctDatails.png')
@@ -52,7 +51,6 @@ class SeleniumTest(LiveServerTestCase):
         id_Input = self.browser.find_element_by_id("user_id")
         id_Input.send_keys("222")
         id_Input.send_keys(Keys.ENTER)
-        print(self.browser.page_source)
         assert self.str in self.browser.page_source
         #browser.save_screenshot('incorrectDatails.png')
         #################################################################

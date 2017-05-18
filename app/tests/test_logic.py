@@ -30,9 +30,7 @@ class SeleniumTest(unittest.TestCase):
         id_Input.send_keys("66")
         id_Input.send_keys(Keys.ENTER)
         self.time.sleep(2)
-        print(self.browser.title)
-        assert 'Home' in self.browser.title
-        #assert self.str not in self.browser.page_source
+        assert self.str not in self.browser.page_source
         #browser.save_screenshot('correctDatails.png')
 
     def test_incorrect_details(self):
@@ -47,8 +45,7 @@ class SeleniumTest(unittest.TestCase):
         id_Input.send_keys("222")
         id_Input.send_keys(Keys.ENTER)
         self.time.sleep(2)
-        assert 'Home' not in self.browser.title
-        #assert self.str in self.browser.page_source
+        assert self.str in self.browser.page_source
         #browser.save_screenshot('incorrectDatails.png')
         #################################################################
 

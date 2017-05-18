@@ -38,17 +38,6 @@ class SeleniumTest(LiveServerTestCase):
          self.browser.get(self.get_server_url())
          self.str = 'המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע'
 
-
-        # self.browser = webdriver.PhantomJS()
-        # self.time = time
-
-        # db.drop_all()
-        # db.create_all()
-        # db.session.commit()
-        # lilo = User('lilo', 'siksik', 66)
-        # db.session.add(lilo)
-        # db.session.commit()
-
     def test_correct_details(self):
         ################# Get In with correct details #################
         first_name_Input = self.browser.find_element_by_id("first_name")
@@ -75,15 +64,12 @@ class SeleniumTest(LiveServerTestCase):
         #browser.save_screenshot('incorrectDatails.png')
         #################################################################
 
-    def test_home(self):
-        assert "Flask Intro - login page" == self.browser.title
-        ###
 
     def tearDown(self):
         self.browser.quit()
         with app.app_context():
-            db.session.remove()
             db.drop_all()
+            db.session.remove()
 
 if __name__ == '__main__':
     unittest.main()

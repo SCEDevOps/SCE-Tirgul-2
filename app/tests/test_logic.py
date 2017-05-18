@@ -41,7 +41,7 @@ class SeleniumTest(LiveServerTestCase):
     def test_correct_details(self):
         ################# Get In with correct details #################
         first_name_Input = self.browser.find_element_by_id("first_name")
-        first_name_Input.send_keys("lilo")
+        first_name_Input.send_keys("asdasdasdasd")
         last_name_Input = self.browser.find_element_by_id("last_name")
         last_name_Input.send_keys("siksik")
         id_Input = self.browser.find_element_by_id("user_id")
@@ -61,6 +61,7 @@ class SeleniumTest(LiveServerTestCase):
         id_Input = self.browser.find_element_by_id("user_id")
         id_Input.send_keys("222")
         id_Input.send_keys(Keys.ENTER)
+        print(self.browser.page_source)
         assert self.str in self.browser.page_source
         #browser.save_screenshot('incorrectDatails.png')
         #################################################################

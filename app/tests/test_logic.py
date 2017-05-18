@@ -29,7 +29,7 @@ class SeleniumTest(unittest.TestCase):
         id_Input = browser.find_element_by_id("user_id")
         id_Input.send_keys("66")
         id_Input.send_keys(Keys.ENTER)
-        self.time.sleep(5)
+        #self.time.sleep(5)
         assert self.str not in self.browser.page_source
 
         #browser.save_screenshot('correctDatails.png')
@@ -45,7 +45,7 @@ class SeleniumTest(unittest.TestCase):
         id_Input = browser.find_element_by_id("user_id")
         id_Input.send_keys("222")
         id_Input.send_keys(Keys.ENTER)
-        self.time.sleep(5)
+        #self.time.sleep(5)
         assert self.str in self.browser.page_source
         #browser.save_screenshot('incorrectDatails.png')
         #################################################################

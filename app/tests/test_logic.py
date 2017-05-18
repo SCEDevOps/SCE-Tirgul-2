@@ -21,7 +21,7 @@ class SeleniumTest(unittest.TestCase):
     def test_correct_details(self):
         ################# Get In with correct details #################
         browser =  self.browser
-        browser.get('http://127.0.0.1:5000/')
+        browser.get(self.get_server_url())
         first_name_Input = browser.find_element_by_id("first_name")
         first_name_Input.send_keys("lilo")
         last_name_Input = browser.find_element_by_id("last_name")
@@ -29,7 +29,7 @@ class SeleniumTest(unittest.TestCase):
         id_Input = browser.find_element_by_id("user_id")
         id_Input.send_keys("66")
         id_Input.send_keys(Keys.ENTER)
-        self.time.sleep(20)
+        #self.time.sleep(20)
         assert self.str not in self.browser.page_source
 
         #browser.save_screenshot('correctDatails.png')
@@ -37,7 +37,7 @@ class SeleniumTest(unittest.TestCase):
     def test_incorrect_details(self):
         ################# Try to Get In with incorrect details ##########
         browser =  self.browser
-        browser.get('http://127.0.0.1:5000/')
+        browser.get(self.get_server_url())
         first_name_Input = browser.find_element_by_id("first_name")
         first_name_Input.send_keys("lilo")
         last_name_Input = browser.find_element_by_id("last_name")
@@ -45,7 +45,7 @@ class SeleniumTest(unittest.TestCase):
         id_Input = browser.find_element_by_id("user_id")
         id_Input.send_keys("222")
         id_Input.send_keys(Keys.ENTER)
-        self.time.sleep(20)
+        #self.time.sleep(20)
         assert self.str in self.browser.page_source
         #browser.save_screenshot('incorrectDatails.png')
         #################################################################

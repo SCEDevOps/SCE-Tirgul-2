@@ -34,6 +34,7 @@ class SeleniumTest(unittest.TestCase):
         id_Input.send_keys(Keys.ENTER)
         self.time.sleep(2)
         assert self.str not in self.browser.page_source
+
         #browser.save_screenshot('correctDatails.png')
 
     def test_incorrect_details(self):
@@ -53,7 +54,7 @@ class SeleniumTest(unittest.TestCase):
         #################################################################
 
     def tearDown(self):
-        self.browser.close()
+        self.browser.quit()
         db.drop_all()
 
 if __name__ == '__main__':

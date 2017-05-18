@@ -1,34 +1,33 @@
-from flask_testing import LiveServerTestCase
+from flask import Flask
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
 import time
-from app import db, app
+from app import db
 from app.models import User
 
-class Test_Selenium(LiveServerTestCase):
-
-    SQLALCHEMY_DATABASE_URI = "sqlite://"
-    TESTING = True
+class SeleniumTest(unittest.TestCase):
 
     def create_app(self):
+        app = Flask(__name__)
         app.config['TESTING'] = True
-        app.config['LIVESERVER_PORT'] = 8943
+        # Default port is 5000
+        app.config['LIVESERVER_PORT'] = 5000
+        # Default timeout is 5 seconds
         app.config['LIVESERVER_TIMEOUT'] = 10
-        db.init_app(app)
-        with app.app_context():
-            db.create_all()
-            db.session.commit()
-            lilo = User('lilo', 'siksik', 66)
-            db.session.add(lilo)
-            db.session.commit()
+        print('done creatin app ')
         return app
 
     def setUp(self):
+        print('------------------------')
         self.browser = webdriver.PhantomJS()
-        self.browser.get(self.browser.get(self.get_server_url()))
-        self.time = time
-        self.str ='המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע'
+        self.browser.get('http://localhost:5000')
+        print(self.browser.current_url)
+        print('------------------------')
+
+        # self.browser = webdriver.PhantomJS()
+        # self.time = time
+        # self.str ='המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע'
         # db.drop_all()
         # db.create_all()
         # db.session.commit()
@@ -39,6 +38,7 @@ class Test_Selenium(LiveServerTestCase):
     def test_correct_details(self):
         ################# Get In with correct details #################
         browser =  self.browser
+        browser.get('http://127.0.0.1:5000/')
         first_name_Input = browser.find_element_by_id("first_name")
         first_name_Input.send_keys("lilo")
         last_name_Input = browser.find_element_by_id("last_name")
@@ -46,7 +46,7 @@ class Test_Selenium(LiveServerTestCase):
         id_Input = browser.find_element_by_id("user_id")
         id_Input.send_keys("66")
         id_Input.send_keys(Keys.ENTER)
-        #self.time.sleep(5)
+        self.time.sleep(5)
         assert self.str not in self.browser.page_source
 
         #browser.save_screenshot('correctDatails.png')
@@ -54,6 +54,7 @@ class Test_Selenium(LiveServerTestCase):
     def test_incorrect_details(self):
         ################# Try to Get In with incorrect details ##########
         browser =  self.browser
+        browser.get('http://127.0.0.1:5000/')
         first_name_Input = browser.find_element_by_id("first_name")
         first_name_Input.send_keys("lilo")
         last_name_Input = browser.find_element_by_id("last_name")
@@ -61,17 +62,19 @@ class Test_Selenium(LiveServerTestCase):
         id_Input = browser.find_element_by_id("user_id")
         id_Input.send_keys("222")
         id_Input.send_keys(Keys.ENTER)
-        #self.time.sleep(5)
+        self.time.sleep(5)
         assert self.str in self.browser.page_source
         #browser.save_screenshot('incorrectDatails.png')
         #################################################################
 
+    def test_home(self):
+        self.browser.get("http://127.0.0.1:5000/")
+        print(self.browser.title)
+        assert "Flask Intro - login page" == self.browser.title
+
     def tearDown(self):
         self.browser.close()
-        with app.app_context():
-            db.session.remove()
-            db.drop_all()
-
+        db.drop_all()
 
 if __name__ == '__main__':
     unittest.main()

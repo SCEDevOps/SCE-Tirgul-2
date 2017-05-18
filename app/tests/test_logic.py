@@ -21,14 +21,7 @@ class SeleniumTest(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.PhantomJS()
-        driver = webdriver.PhantomJS()
-        print("-------------------------------------")
-        driver.get("http://localhost:8943")
-        print(driver.current_url)
-        # self.driver.get('http://localhost:8943')
         self.driver.get("http://localhost:8943")
-        print(self.driver.current_url)
-        print("-------------------------------------")
 
 
         # self.browser = webdriver.PhantomJS()
@@ -74,15 +67,6 @@ class SeleniumTest(unittest.TestCase):
         #################################################################
 
     def test_home(self):
-        #self.browser.get("http://127.0.0.1:5000/")
-        print('------------------------')
-        print(self.driver.current_url)
-        print('------------------------')
-        print('########################')
-        self.driver.get("http://localhost:8943")
-        print('------------------------')
-        print(self.driver.current_url)
-        print('------------------------')
         assert "Flask Intro - login page" == self.browser.title
         #
 

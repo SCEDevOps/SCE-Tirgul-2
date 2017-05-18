@@ -18,11 +18,8 @@ class WebTest(unittest.TestCase):
         return app
 
     def setUp(self):
-        self.app = app
         self.check = self.app.test_client(self)
         self.check.testing = True
-        db.drop_all()
-        db.create_all()
 
 ######## The manager page is not Unaccessible from the url ########
     def test_Manager_Option(self):
@@ -42,11 +39,11 @@ class WebTest(unittest.TestCase):
         str = response.data.decode('utf-8')
         assert 'המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע' in str
 ###################################################################
+
     def tearDown(self):
-        self.browser.quit()
-        with app.app_context():
-            db.session.remove()
-            db.drop_all()
+        del self.check
+        db.session.remove()
+        db.drop_all()
 
 
 if __name__ == '__main__':

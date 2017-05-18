@@ -7,20 +7,22 @@ from app import db
 from app.models import User
 
 class SeleniumTest(unittest.TestCase):
-
+    SQLALCHEMY_DATABASE_URI = "sqlite://"
+    TESTING = True
     def create_app(self):
         app = Flask(__name__)
         app.config['TESTING'] = True
         # Default port is 5000
-        app.config['LIVESERVER_PORT'] = 5000
+        app.config['LIVESERVER_PORT'] = 8943
         # Default timeout is 5 seconds
         app.config['LIVESERVER_TIMEOUT'] = 10
         print('done creatin app ')
         return app
 
     def setUp(self):
-        self.browser = webdriver.PhantomJS()
-        self.browser.get('http://localhost:5000')
+        self.driver = webdriver.PhantomJS()
+        # self.driver.get('http://localhost:8943')
+        self.driver.get(self.get_server_url())
 
         # self.browser = webdriver.PhantomJS()
         # self.time = time
@@ -67,7 +69,8 @@ class SeleniumTest(unittest.TestCase):
     def test_home(self):
         self.browser.get("http://127.0.0.1:5000/")
         print('------------------------')
-        print(self.browser.title)
+        print(self.get_server_url())
+        print(self.driver.current_url)
         print('------------------------')
         assert "Flask Intro - login page" == self.browser.title
 

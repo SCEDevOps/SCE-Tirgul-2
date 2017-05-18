@@ -1,14 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
-import os
 import time
-
 from app import db
 from app.models import User
 
 class SeleniumTest(unittest.TestCase):
-##C:\Users\rom\Desktop\Tirgul2\app\tests\phantomjs.exe
+
     def setUp(self):
         self.browser = webdriver.PhantomJS()
         self.time = time
@@ -19,7 +17,6 @@ class SeleniumTest(unittest.TestCase):
         lilo = User('lilo', 'siksik', 66)
         db.session.add(lilo)
         db.session.commit()
-
 
     def test_correct_details(self):
         ################# Get In with correct details #################
@@ -33,8 +30,9 @@ class SeleniumTest(unittest.TestCase):
         id_Input.send_keys("66")
         id_Input.send_keys(Keys.ENTER)
         self.time.sleep(2)
-        assert self.str not in self.browser.page_source
-
+        print(self.browser.title)
+        assert 'Home' in self.browser.title
+        #assert self.str not in self.browser.page_source
         #browser.save_screenshot('correctDatails.png')
 
     def test_incorrect_details(self):
@@ -49,7 +47,8 @@ class SeleniumTest(unittest.TestCase):
         id_Input.send_keys("222")
         id_Input.send_keys(Keys.ENTER)
         self.time.sleep(2)
-        assert self.str in self.browser.page_source
+        assert 'Home' not in self.browser.title
+        #assert self.str in self.browser.page_source
         #browser.save_screenshot('incorrectDatails.png')
         #################################################################
 

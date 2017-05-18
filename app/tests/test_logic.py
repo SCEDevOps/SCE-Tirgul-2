@@ -69,7 +69,6 @@ class SeleniumTest(unittest.TestCase):
     def test_home(self):
         #self.browser.get("http://127.0.0.1:5000/")
         print('------------------------')
-        print(self.driver.get_server_url())
         print(self.driver.current_url)
         print('------------------------')
         print('########################')

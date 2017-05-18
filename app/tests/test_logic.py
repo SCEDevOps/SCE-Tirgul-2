@@ -1,4 +1,3 @@
-
 import os
 import unittest
 from selenium import webdriver
@@ -9,7 +8,7 @@ from app.models import User, Party
 from app import app , db
 
 
-class SeleniumTest(unittest.TestCase):
+class SeleniumTest(LiveServerTestCase):
     SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
 

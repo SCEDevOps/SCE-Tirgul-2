@@ -34,7 +34,7 @@ class SeleniumTest(unittest.TestCase):
         assert self.str not in self.browser.page_source
 
         #browser.save_screenshot('correctDatails.png')
-
+#
     def test_incorrect_details(self):
         ################# Try to Get In with incorrect details ##########
         #browser =  self.browser

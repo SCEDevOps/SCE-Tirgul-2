@@ -1,4 +1,7 @@
 import unittest
+
+from flask import Flask
+
 from app import app
 from app import db
 
@@ -8,6 +11,7 @@ class WebTest(unittest.TestCase):
     TESTING = True
 
     def create_app(self):
+        app = Flask(__name__)
         app.config['TESTING'] = True
         db.init_app(app)
         with app.app_context():

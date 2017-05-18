@@ -21,7 +21,7 @@ class SeleniumTest(LiveServerTestCase):
             db.create_all()
             self.insert_data_to_db()
         return app
-
+#
     def insert_data_to_db(self):
         db.session.commit()
         admon = User('lilo', 'siksik', '66')

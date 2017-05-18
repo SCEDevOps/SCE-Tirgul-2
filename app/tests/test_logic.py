@@ -36,10 +36,12 @@ class SeleniumTest(LiveServerTestCase):
          self.browser = webdriver.PhantomJS()
          # nevigate to the application home page
          self.browser.get(self.get_server_url())
+         self.str = 'המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע'
+
 
         # self.browser = webdriver.PhantomJS()
         # self.time = time
-        # self.str ='המצביע אינו מופיע בבסיס הנתונים או שכבר הצביע'
+
         # db.drop_all()
         # db.create_all()
         # db.session.commit()

@@ -19,11 +19,8 @@ class SeleniumTest(unittest.TestCase):
         return app
 
     def setUp(self):
-        print('------------------------')
         self.browser = webdriver.PhantomJS()
         self.browser.get('http://localhost:5000')
-        print(self.browser.current_url)
-        print('------------------------')
 
         # self.browser = webdriver.PhantomJS()
         # self.time = time
@@ -68,10 +65,11 @@ class SeleniumTest(unittest.TestCase):
         #################################################################
 
     def test_home(self):
-        res =self.browser.get("http://127.0.0.1:5000/")
+        self.browser.get("http://127.0.0.1:5000/")
+        print('------------------------')
         print(self.browser.title)
-        self.assertEqual(res.code, 200)
-        #assert "Flask Intro - login page" == self.browser.title
+        print('------------------------')
+        assert "Flask Intro - login page" == self.browser.title
 
     def tearDown(self):
         self.browser.close()

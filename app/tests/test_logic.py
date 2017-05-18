@@ -22,7 +22,7 @@ class SeleniumTest(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.PhantomJS()
         # self.driver.get('http://localhost:8943')
-        self.driver.get(self.get_server_url())
+        self.driver.get("http://localhost:8943")
 
         # self.browser = webdriver.PhantomJS()
         # self.time = time

@@ -1,7 +1,4 @@
 import unittest
-
-from flask import Flask
-
 from app import app
 from app import db
 
@@ -10,16 +7,8 @@ class WebTest(unittest.TestCase):
     SQLALCHEMY_DATABASE_URI = "sqlite://"
     TESTING = True
 
-    def create_app(self):
-        app = Flask(__name__)
-        app.config['TESTING'] = True
-        db.init_app(app)
-        with app.app_context():
-            db.create_all()
-            self.insert_data_to_db()
-        return app
-
     def setUp(self):
+        db.create_all()
         self.check = app.test_client(self)
 
 ######## The manager page is not Unaccessible from the url ########

@@ -20,6 +20,7 @@ class SeleniumTest(LiveServerTestCase):
         with app.app_context():
             db.create_all()
             print("--- in -----")
+            #
         return app
 
     # def insert_data_to_db(self):

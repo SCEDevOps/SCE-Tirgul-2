@@ -82,7 +82,7 @@ class SeleniumTest(unittest.TestCase):
 
     def test_home(self):
         assert "Flask Intro - login page" == self.driver.title
-        #
+        ###
 
     def tearDown(self):
         self.browser.close()

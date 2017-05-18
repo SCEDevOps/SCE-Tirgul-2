@@ -7,6 +7,8 @@ from app import db
 from app.models import User
 
 class SeleniumTest(unittest.TestCase):
+    SQLALCHEMY_DATABASE_URI = "sqlite://"
+    TESTING = True
 
     def setUp(self):
         app.config['TESTING'] = True

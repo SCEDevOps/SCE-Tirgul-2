@@ -1,13 +1,9 @@
-# -*- coding: utf-8 -*-
-
 import os
-
 from flask import render_template, flash, redirect, url_for, request, g
 from flask import send_from_directory
 from flask_login import login_user, logout_user, current_user, login_required
 from app import db
 from app import app, login_manager
-from .forms import LoginForm
 from .models import User, Party
 
 @login_required
@@ -25,11 +21,10 @@ def validateAndAdd(party_name):
 
     db.session.commit()
 
-
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    if request.method == 'POST':
+    if request.method == 'POST' :
         validateAndAdd(request.form['party_name'])
         return redirect(url_for('login'))
     g.user = current_user #global user parameter used by flask framwork
@@ -37,7 +32,7 @@ def index():
     return render_template('index.html',
                            title='Home',
                            user=g.user,
-                           parties=parties)
+                       parties=parties)
 def validateUser(first_name,last_name,user_id):
     user = User.query.filter_by(first_name=first_name,last_name=last_name,user_id=user_id).first()
     if (user is not None and user.can_vote is True):

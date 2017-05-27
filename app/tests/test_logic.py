@@ -29,7 +29,7 @@ class SeleniumTest(LiveServerTestCase):
         u = User('lilo', 'siksik', '66')
         db.session.add(u)
         db.session.commit()
-
+ ##
     def setUp(self):
         # create a new Firefox session
          self.browser = webdriver.PhantomJS()

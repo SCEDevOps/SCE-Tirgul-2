@@ -9,7 +9,7 @@ from app import db
 from app import app, login_manager
 from .forms import LoginForm
 from .models import User, Party
-#
+##
 @login_required
 @login_manager.user_loader
 def load_user(user_id):

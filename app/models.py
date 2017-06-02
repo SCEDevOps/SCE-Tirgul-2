@@ -1,5 +1,3 @@
-from flask_login._compat import unicode
-
 from app import db
 
 

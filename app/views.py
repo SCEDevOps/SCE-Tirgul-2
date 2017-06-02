@@ -1,3 +1,4 @@
+# - *- coding: utf- 8 - *-
 import os
 from flask import render_template, flash, redirect, url_for, request, g
 from flask import send_from_directory

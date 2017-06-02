@@ -1,5 +1,5 @@
 sudo yum install git-all -y
-sudo yum install -y
+sudo yum install wget -y
 sudo easy_install pip
 sudo pip install alembic==0.9.1
 sudo pip install aniso8601==1.2.0

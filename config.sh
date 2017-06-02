@@ -8,7 +8,7 @@ sudo pip install click==6.7
 sudo pip install CouchDB==1.1
 sudo pip install Flask==0.12
 sudo pip install Flask-Babel==0.11.1
-sudo pip install Flask-Bcrypt==0.6.0
+
 sudo pip install Flask-Blogging==0.7.4
 sudo pip install Flask-Cache==0.13.1
 sudo pip install Flask-CouchDB==0.2.1
@@ -29,7 +29,7 @@ sudo pip install Jinja2==2.9.5
 sudo pip install Mako==1.0.6
 sudo pip install Markdown==2.6.8
 sudo pip install MarkupSafe==1.0
-sudo pip install py-bcrypt==0.4
+
 sudo pip install python-dateutil==2.6.0
 sudo pip install python-editor==1.0.3
 sudo pip install python-openid==2.2.5

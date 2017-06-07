@@ -1,4 +1,4 @@
-from cloudshell.api.cloudshell_api import CloudShellAPISession
+from cloudshell import CloudShellAPISession
 
 server_ip = '172.31.22.239' ## This is the internal IP of our CloudShell in AWS
 reservation_id = '0ba4f671-50f4-420a-ba34-07bfd4b73c87'

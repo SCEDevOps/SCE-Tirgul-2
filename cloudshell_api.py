@@ -17,4 +17,4 @@ my_resource = [resource for resource in resources
 if len(my_resource) > 1:
     raise Exception('There are more then one app in the sandbox')
 
-print my_resource[0].FullAddress
+return my_resource[0].FullAddress

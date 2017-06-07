@@ -30,7 +30,7 @@ sudo pip install Jinja2==2.9.5
 sudo pip install Mako==1.0.6
 sudo pip install Markdown==2.6.8
 sudo pip install MarkupSafe==1.0
-sudo pip install cloudshell-automation-api
+sudo pip install cloudshell-rest-api
 sudo pip install python-dateutil==2.6.0
 sudo pip install python-editor==1.0.3
 sudo pip install python-openid==2.2.5

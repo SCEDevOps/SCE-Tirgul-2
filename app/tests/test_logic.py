@@ -80,7 +80,6 @@ class SeleniumTest(LiveServerTestCase):
         done_btn = self.browser.find_element_by_id("btn")
         done_btn.send_keys(Keys.ENTER)
         Keys.ENTER
-        print(db.session)
         assert "ברוכים הבאים" in self.browser.page_source
 
 

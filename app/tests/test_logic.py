@@ -1,5 +1,7 @@
 import os
 import unittest
+
+import selenium
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from flask import Flask
@@ -73,8 +75,9 @@ class SeleniumTest(LiveServerTestCase):
         id_Input = self.browser.find_element_by_id("user_id")
         id_Input.send_keys("66")
         id_Input.send_keys(Keys.ENTER)
-        likud = self.browser.find_element_by_id("הליכוד")
-        likud.click()
+        selenium.click("id=הליכוד")
+        #likud = self.browser.find_element_by_id("הליכוד")
+        #likud.click()
         done_btn = self.browser.find_element_by_id("btn")
         done_btn.send_keys(Keys.ENTER)
         Keys.ENTER

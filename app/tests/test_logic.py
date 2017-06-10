@@ -63,6 +63,20 @@ class SeleniumTest(LiveServerTestCase):
         #browser.save_screenshot('incorrectDatails.png')
         #################################################################
 
+    def test_full_check(self):
+        first_name_Input = self.browser.find_element_by_id("first_name")
+        first_name_Input.send_keys("lilo")
+        last_name_Input = self.browser.find_element_by_id("last_name")
+        last_name_Input.send_keys("siksik")
+        id_Input = self.browser.find_element_by_id("user_id")
+        id_Input.send_keys("66")
+        id_Input.send_keys(Keys.ENTER)
+        done_btn = self.find_element_by_id("btn")
+        done_btn.send_keys(Keys.ENTER)
+        ok_btn=self.browser.find_elements_by_xpath('//div[contains(text(), "' + "אישור" + '")]')
+        ok_btn.send_keys(Keys.ENTER)
+        assert "ברוכים הבאים" in self.browser.page_source
+
 
     def tearDown(self):
         self.browser.quit()

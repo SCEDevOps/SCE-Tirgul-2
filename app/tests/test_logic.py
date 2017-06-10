@@ -78,7 +78,7 @@ class SeleniumTest(LiveServerTestCase):
         #likud = self.browser.find_element_by_id("הליכוד")
         #likud.click()
         radio = self.browser.find_element_by_id("הליכוד")
-        radio.click()
+        self.browser.execute_script("arguments[0].click();", radio)
         done_btn = self.browser.find_element_by_id("btn")
         done_btn.send_keys(Keys.ENTER)
         Keys.ENTER

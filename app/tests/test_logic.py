@@ -27,7 +27,9 @@ class SeleniumTest(LiveServerTestCase):
     def init_db(self):
         db.session.commit()
         u = User('lilo', 'siksik', '66')
+        likud = Party(u'הליכוד','https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Likud_Logo.svg/250px-Likud_Logo.svg.png')
         db.session.add(u)
+        db.session.add(likud)
         db.session.commit()
  ##
     def setUp(self):
@@ -71,7 +73,7 @@ class SeleniumTest(LiveServerTestCase):
         id_Input = self.browser.find_element_by_id("user_id")
         id_Input.send_keys("66")
         id_Input.send_keys(Keys.ENTER)
-        likud = self.browser.find_element_by_id("העבודה")
+        likud = self.browser.find_element_by_id("הליכוד")
         likud.send_keys(Keys.ENTER)
         done_btn = self.browser.find_element_by_id("btn")
         done_btn.send_keys(Keys.ENTER)

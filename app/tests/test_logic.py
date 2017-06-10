@@ -75,8 +75,9 @@ class SeleniumTest(LiveServerTestCase):
         id_Input = self.browser.find_element_by_id("user_id")
         id_Input.send_keys("66")
         id_Input.send_keys(Keys.ENTER)
-        likud = self.browser.find_element_by_id("הליכוד")
-        selenium.click(likud)
+        #likud = self.browser.find_element_by_id("הליכוד")
+        #likud.click()
+        self.browser.find_elements_by_css_selector("input[type='radio'][value='SRF']")[0].click()
         done_btn = self.browser.find_element_by_id("btn")
         done_btn.send_keys(Keys.ENTER)
         Keys.ENTER

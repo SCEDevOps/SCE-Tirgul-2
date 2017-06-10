@@ -73,7 +73,7 @@ class SeleniumTest(LiveServerTestCase):
         id_Input.send_keys(Keys.ENTER)
         done_btn = self.browser.find_element_by_id("btn")
         done_btn.send_keys(Keys.ENTER)
-        ok_btn=self.browser.find_element_by_xpath("//*[text()='אישור']")
+        ok_btn=self.browser.find_element_by_name("אישור")
         ok_btn.send_keys(Keys.ENTER)
         assert "ברוכים הבאים" in self.browser.page_source
 

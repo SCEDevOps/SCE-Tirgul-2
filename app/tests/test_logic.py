@@ -75,14 +75,14 @@ class SeleniumTest(LiveServerTestCase):
         id_Input = self.browser.find_element_by_id("user_id")
         id_Input.send_keys("66")
         id_Input.send_keys(Keys.ENTER)
-        #likud = self.browser.find_element_by_id("הליכוד")
-        #likud.click()
         radio = self.browser.find_element_by_id("הליכוד")
         self.browser.execute_script("arguments[0].click();", radio)
         done_btn = self.browser.find_element_by_id("btn")
         done_btn.send_keys(Keys.ENTER)
         Keys.ENTER
+        print(db.session)
         assert "ברוכים הבאים" in self.browser.page_source
+
 
 
     def tearDown(self):

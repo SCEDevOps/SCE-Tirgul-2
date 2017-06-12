@@ -10,7 +10,7 @@ session = CloudShellAPISession(server_ip,
                                sys.argv[4],
                                sys.argv[5])  ##make sure 
 										  ##to pass these credentials from jenkins and don't store them in GitHub!!
-
+print (session)
 resources = session.GetReservationDetails(reservation_id).ReservationDescription.Resources
 my_resource = [resource for resource in resources
                if resource.ResourceModelName == DEPLOYED_APP_MODEL]

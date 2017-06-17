@@ -23,6 +23,5 @@ if len(my_resource) == 0:
     raise Exception('There are no deployed application in the sandbox')
 
 print (my_resource[0].FullAddress)
-print (my_resource[0].FolderFullPath)
 
 

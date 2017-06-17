@@ -27,6 +27,6 @@ print (my_resource[0].Availability)
 print (my_resource[0].CreatedByUser)
 print (my_resource[0].CreatedInReservation)
 print (my_resource[0].Released)
-print (my_resource[0].VmDetails)
+print (my_resource[0].Shared)
 
 

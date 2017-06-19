@@ -45,6 +45,6 @@ sudo pip install Whoosh==2.7.4
 sudo pip install WTForms==2.1
 git clone https://github.com/SCEDevOps/SCE-Tirgul-2
 cd SCE-Tirgul-2
-sudo nohup python run.py > ../l.txt 2>&1 </dev/null &
+sudo nohup python run.py &
 echo hi 
 
